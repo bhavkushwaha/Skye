@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X } from 'lucide-react'
+import { X, LocateFixed } from 'lucide-react'
 import { useWeatherStore, useWeather } from '@skye/shared-hooks'
 import { getWeatherTheme, formatTemp, formatHour } from '@skye/core'
 import { WeatherBackground } from '@skye/animations'
@@ -14,7 +14,7 @@ const SIZES = {
 
 export function Widget() {
   useWeather()
-  const { weather, isLoading, unit, widgetSize } = useWeatherStore()
+  const { weather, isLoading, unit, widgetSize, activeLocation, setActiveLocation } = useWeatherStore()
   const [hovered, setHovered] = useState(false)
 
   const { w, h } = SIZES[widgetSize]
@@ -59,7 +59,22 @@ export function Widget() {
         onClick={openDashboard}
       />
 
-      {/* Close button — always on top */}
+      {/* Close button + My Location — always on top */}
+      <AnimatePresence>
+        {hovered && activeLocation && (
+          <motion.button
+            className="absolute no-drag"
+            style={{ top: 10, left: 10, zIndex: 10, background: 'rgba(99,102,241,0.25)', border: '1px solid rgba(99,102,241,0.5)', borderRadius: 20, padding: '3px 8px', display: 'flex', alignItems: 'center', gap: 4, cursor: 'pointer', color: '#a5b4fc', fontSize: 10, fontWeight: 700 }}
+            onClick={(e) => { e.stopPropagation(); setActiveLocation(null) }}
+            initial={{ opacity: 0, scale: 0.7 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.7 }}
+          >
+            <LocateFixed size={9} />
+            My Location
+          </motion.button>
+        )}
+      </AnimatePresence>
       <AnimatePresence>
         {hovered && (
           <motion.button
