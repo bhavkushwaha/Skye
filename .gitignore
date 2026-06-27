@@ -7,10 +7,22 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Dependencies
 node_modules
+
+# Build outputs
 dist
 dist-ssr
+build
+out
 *.local
+
+# Next.js
+.next/
+apps/web/.next/
+
+# Electron build output
+C:/SkyeBuild/
 
 # Editor directories and files
 .vscode/*
@@ -23,6 +35,9 @@ dist-ssr
 *.sln
 *.sw?
 
+# Misc
 .claude
-.exe
-build
+*.exe
+
+# pnpm
+.pnpm-store/
