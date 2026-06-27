@@ -1,7 +1,7 @@
 {
   "name": "skye-weather",
   "productName": "Skye",
-  "description": "Premium desktop weather application",
+  "description": "weather application",
   "author": "Bhav",
   "private": true,
   "version": "1.0.0",
