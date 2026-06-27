@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [{ "name": "next" }],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"],
+      "@skye/types":        ["../../packages/types/src/index.ts"],
+      "@skye/core":         ["../../packages/core/src/index.ts"],
+      "@skye/weather-sdk":  ["../../packages/weather-sdk/src/index.ts"],
+      "@skye/shared-hooks": ["../../packages/shared-hooks/src/index.ts"],
+      "@skye/animations":   ["../../packages/animations/src/index.ts"],
+      "@skye/ui":           ["../../packages/ui/src/index.ts"]
+    },
+    "ignoreDeprecations": "6.0"
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "../../packages/*/src"],
+  "exclude": ["node_modules"]
+}
