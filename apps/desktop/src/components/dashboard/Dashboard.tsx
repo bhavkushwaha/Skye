@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Search, RefreshCw } from 'lucide-react'
+import { Search, RefreshCw, LocateFixed } from 'lucide-react'
 import { useWeatherStore, useWeather } from '@skye/shared-hooks'
 import { getWeatherTheme, formatTemp, getSmartSummary, formatTime } from '@skye/core'
 import { WeatherBackground } from '@skye/animations'
@@ -8,7 +8,7 @@ import { WeatherIcon, AQIOrb, MetricsGrid, HourlyForecast, DailyForecast, Locati
 
 export function Dashboard() {
   const { refresh } = useWeather()
-  const { weather, isLoading, unit, setUnit } = useWeatherStore()
+  const { weather, isLoading, unit, setUnit, activeLocation, setActiveLocation } = useWeatherStore()
   const [showSearch, setShowSearch] = useState(false)
 
   const theme = weather
@@ -62,6 +62,21 @@ export function Dashboard() {
             ))}
           </div>
 
+          {activeLocation && (
+            <button
+              onClick={() => setActiveLocation(null)}
+              title="Return to my location"
+              style={{
+                display: 'flex', alignItems: 'center', gap: 4,
+                padding: '3px 9px', borderRadius: 20,
+                background: 'rgba(99,102,241,0.18)', border: '1px solid rgba(99,102,241,0.4)',
+                color: '#a5b4fc', fontSize: 10, fontWeight: 700, cursor: 'pointer',
+              }}
+            >
+              <LocateFixed size={10} />
+              My Location
+            </button>
+          )}
           <IconBtn onClick={() => setShowSearch(true)} title="Search location"><Search size={13} /></IconBtn>
           <IconBtn onClick={refresh} title="Refresh" spin={isLoading}><RefreshCw size={13} /></IconBtn>
         </div>
