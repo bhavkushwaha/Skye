@@ -12,6 +12,7 @@
     "build": "tsc -b && vite build",
     "electron:dev": "concurrently \"cross-env BROWSER=none npm run dev\" \"wait-on http://localhost:5173 && electron .\"",
     "package": "pnpm run build && node_modules\\.bin\\electron-builder.cmd --win portable",
+    "package:store": "pnpm run build && node_modules\\.bin\\electron-builder.cmd --config electron-builder.store.json",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -58,6 +59,15 @@
       "target": [{ "target": "portable", "arch": ["x64"] }],
       "artifactName": "Skye-Setup.exe",
       "icon": "build/icon.png"
+    },
+    "appx": {
+      "applicationId": "SkyeWeather",
+      "backgroundColor": "#050810",
+      "displayName": "Skye Weather",
+      "identityName": "bhavkushwaha.SkyeWeather",
+      "publisher": "CN=737A9450-867A-4C19-B65C-8FD65E9AFC7F",
+      "publisherDisplayName": "bhavkushwaha",
+      "languages": ["en-US"]
     },
     "mac": {
       "target": "dmg"
